@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react"
+import React, { useState, useCallback, useMemo } from "react"
 import Link from 'next/link'
 import Button from "./Button"
 import ButtonScore from "./ButtonScore"
@@ -9,13 +9,13 @@ const Footer = () => {
   const [age, setAge] = useState(0)
   const [score, setScore] = useState(0)
 
-  const incrementScore = useCallback(() => {
+  const incrementScore = () => {
     setScore(score + 1)
-  }, [score])
+  }
 
-  const incrementAge = useCallback(() => {
+  const incrementAge = () => {
     setAge(age + 1)
-  }, [age])
+  }
 
   return (
     <footer>
@@ -24,15 +24,18 @@ const Footer = () => {
         <li><Link href="about" >このリポジトリについて</Link></li>
       </ul>
       <Title />
+      <br /><br />
       <div>
         {score}<br />
-        <ButtonScore text={"スコアプラス"} count={score} />
-        <ButtonScore text={"Ageマイナス"} count={age} />
+        <ButtonScore text={"score Change"} count={score} />
+        <ButtonScore text={"Age Change"} count={age} />
+        <ButtonScore text={"CCCC"} count={0} />
+        <ButtonScore text={"DDDD"} count={0} />
       </div>
-
+      <br /><br/>
       <div>
         {age}<br />
-        <Button handleClick={incrementScore}>ageプラス</Button>
+        <Button handleClick={incrementScore}>スコアプラス</Button>
         <Button handleClick={incrementAge}>ageマイナス</Button>
       </div>
     </footer>
