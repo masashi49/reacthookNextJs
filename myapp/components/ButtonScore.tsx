@@ -12,7 +12,7 @@ const ButtonScore: React.FC<props> = ({ text, count }) => {
   )
 }
 
-export default ButtonScore
+export default React.memo(ButtonScore)
 
 // React.memo を使用すると、親から受けとったコンポーネントが受け取るpropの比較し、違いがあったらレンダリングする。
 // これを使用しないと、1つのコンポーネントが複数箇所で使いまわされている場合、全てレンダリングされる(footerで4ヶ所使用しているため、4かいレンダリングが走る。)
