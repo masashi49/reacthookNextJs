@@ -38,6 +38,20 @@ const Header = () => {
   const mergedObjedt = merge({ name: "MAx" }, { age: 10 })
   const mergedObjedt2 = merge<{ name: string }, { age: number }>({ name: "MAx" }, { age: 10 }) // ジェネリクスに明示的に型を渡す。こんなことしなくていい。typescriptは自動で引数から読み込んでくれる。
 
+  //バグがある
+  const mergedObjedt3 = merge({ name: "MAx" }, 30) // 2つ目の引数をnumberにしてもエラーがおきない、にもかかわらず、Object.assignは失敗する。
+  console.log(mergedObjedt3) // {name:"Max"} だけ。numberはmergeされない。
+
+
+  type merrere = {
+    name: string;
+  }
+
+  function merge2<T extends merrere, U>(objA: T, name: U) { // extendsで objectに限定した
+    return Object.assign(objA, name)
+  }
+  const merge2Obj = merge2({ name: "MAx" }, { name: "49" })  // objectではないのでエラーをはく
+
 
 
   return (
