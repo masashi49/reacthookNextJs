@@ -1,44 +1,18 @@
-import React, { useState, useCallback, useMemo } from "react"
+import React from "react"
 import Link from 'next/link'
-import Button from "./Button"
-import ButtonScore from "./ButtonScore"
+
 import Title from "./Title"
 
 const Footer = () => {
 
-  const [age, setAge] = useState(0)
-  const [score, setScore] = useState(0)
-
-  const incrementScore = useCallback(() => {
-    setScore(score + 1)
-  },[score])
-
-  const incrementAge = useCallback(() => {
-    setAge(age + 1)
-  },[age])
-
-  console.log("a")
   return (
     <footer>
       <ul>
         <li><Link href="/" >トップへ</Link></li>
         <li><Link href="about" >このリポジトリについて</Link></li>
+        <li><Link href="typescripttest" >TSのテストページ</Link></li>
       </ul>
       <Title />
-      <br /><br />
-      <div>
-        {score}<br />
-        <ButtonScore text={"score Change"} count={score} />
-        <ButtonScore text={"Age Change"} count={age} />
-        <ButtonScore text={"C"} count={0} />
-        <ButtonScore text={"D"} count={0} />
-      </div>
-      <br /><br/>
-      <div>
-        {age}<br />
-        <Button handleClick={incrementScore}>スコアプラス</Button>
-        <Button handleClick={incrementAge}>ageマイナス</Button>
-      </div>
     </footer>
   )
 }

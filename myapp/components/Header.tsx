@@ -3,53 +3,6 @@ import { memoryUsage } from 'process';
 
 const Header = () => {
 
-  // const names: Array<string> = [] // string型の配列
-  // names[0].split(''); // stringだと保証されているのでsplitを入れてもエラーにならない。
-
-  // any型にすると、どんなメソッドもthenで使用できると認識される、numberなのにsplitとか。
-  // const promise: Promise<any> = new Promise((resolve, reject) => {
-  //   setTimeout(() => {
-  //     resolve("終わりました") //stringを返している
-  //   })
-  // })
-
-  const promise = new Promise<string>((resolve, reject) => {
-    setTimeout(() => {
-      resolve("終わりました") //stringを返している
-    })
-  })
-  promise.then(data => {
-    data.split('') // stringが入っているのがわかっているのでsplit使える
-  })
-
-  // 下記でもmergedObjedtオブジェクトの呼び出しが可能だが、いちいち書くのは面倒くさい
-  // function merge(objA: object, objB: object) {
-  //   return Object.assign(objA, objB)
-  // }
-  // const mergedObjedt = merge({ name: "MAx" }, { age: 10 } ) as {
-  //   name: string;
-  //   age: number;
-  // }
-  // mergedObjedt.age
-
-  function merge<T, U>(objA: T, objB: U) { //Object.assignの役割を理解し、交差型を返すと推論する
-    return Object.assign(objA, objB)
-  }
-  const mergedObjedt = merge({ name: "MAx" }, { age: 10 })
-  const mergedObjedt2 = merge<{ name: string }, { age: number }>({ name: "MAx" }, { age: 10 }) // ジェネリクスに明示的に型を渡す。こんなことしなくていい。typescriptは自動で引数から読み込んでくれる。
-
-  //バグがある
-  const mergedObjedt3 = merge({ name: "MAx" }, 30) // 2つ目の引数をnumberにしてもエラーがおきない、にもかかわらず、Object.assignは失敗する。
-  console.log(mergedObjedt3) // {name:"Max"} だけ。numberはmergeされない。
-
-
-  function merge4<T extends object, U extends object>(objA: T, objB: U) { //extends でobject固定とする
-    return Object.assign(objA, objB)
-  }
-  const merge4dObjedt4 = merge4({ name: "MAx" }, {age : 30}) 
-  console.log(merge4dObjedt4) // 正しくマージされた
-
-
   return (
     <Head>
       <title></title>
