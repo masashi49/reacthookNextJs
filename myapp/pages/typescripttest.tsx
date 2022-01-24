@@ -109,10 +109,45 @@ let msg2: typeof msg // 元の変数のtypeを継承
 msg2 = "helllo"
 // msg2 = 2 stging以外は無理
 
-//typeof
+//typeof 変数の継承
 let animal = { cat: "smlal cat" }
 let newAnimal: typeof animal = {cat:"bigCat"}
 
+let msg3 = "hi"
+let msg4: typeof msg3;  // すでにある変数の方を継承する
+
+// msg4 = 23 msg３の型なのでnumはダメ
+
+let animal2 = { cat: "small cat" }
+let animal3: typeof animal2 // オブジェクトの中にstringという型
+// animal3 = { dog:"wan";} catじゃないからだめ
+// 複雑なjsonのオブジェクトを変数で受け取っているとき、typeofで構造を継承することで何が抜けているかなどわかりやすくなる
+
+// keyof 型の継承 
+
+type KEYS = {
+  primary: string;
+  seccondary:string;
+}
+let key: keyof KEYS
+key = "primary" // keyofは、宣言されたものをユニオン型で受けとる
+key = "seccondary" // どちらかしかダメ
+
+// typeof + ketof
+
+const SPORTS = {
+  scoccedr: "Soccer",
+  baseball:"Baseball"
+}
+let keySprtrs: typeof SPORTS;
+  keySprtrs = {
+  scoccedr: "string",
+  baseball: "string",
+  }
+
+// 変数を型ととして継承し、ユニオン型で指定できるようにする。
+let keySports2: keyof typeof SPORTS;
+keySports2 = "scoccedr"
 
 
 
