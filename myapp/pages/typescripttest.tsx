@@ -180,6 +180,23 @@ const PC2: PC = {
   OSType: OS.Mac
 }
 
+// 型の互換性
+
+const comp1 = "test";
+let comp2:string = comp1
+
+let comp3: string = "test"
+// let comp4: "test" = comp3
+//test型はtestしか入らないはずなのに、代入できない
+
+
+let funcomp1 = (x: number) => { }
+let funccomp2 = (x: string) => { }
+
+// funcomp1 = funccomp2 
+// funccomp2 = funcomp1
+// 引数の方が違うのでいれれない
+
 
 
 const Home: NextPage = () => {
