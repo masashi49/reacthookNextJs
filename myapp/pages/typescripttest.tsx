@@ -183,7 +183,7 @@ const PC2: PC = {
 // 型の互換性
 
 const comp1 = "test";
-let comp2:string = comp1
+let comp2: string = comp1
 
 let comp3: string = "test"
 // let comp4: "test" = comp3
@@ -198,6 +198,77 @@ let funccomp2 = (x: string) => { }
 // 引数の方が違うのでいれれない
 
 
+// ジェネリクス
+
+interface GEN<T> { // 定義した時点では、T何にでもなれる
+  item: T;
+
+}
+
+const gen0: GEN<string> = { // 実際に使うときに型をGENに渡す。具体的な方は使う時に定義する。
+  item: "hello"
+}
+const gen1: GEN = { item: "hello" }
+const gen2: GEN<number> = { item: 12 } // Tはnunber型になった！
+
+
+interface GEN1<T = string> { //デフォルト型
+  item: T;
+}
+const gen3: GEN1 = { item: "string" } // デフォルトを定義しているので、<>がなくてもエラーにならない
+const gen999: GEN1 = { item: 223 } // デフォルトがstringなので、numberはいれれない。
+
+
+interface GEN2<T extends string | number> { // extendsを使ってかたに縛りを設ける。
+  item: T; // この場合、stringとnumberしか入らない
+}
+
+const gen4: GEN2<string> = { // OK
+  item: "hello"
+}
+const gen5: GEN2<number> = { // OK
+  item: 12
+}
+// const gen6: GEN2<boolean> = { // NG 制約違反
+//   item: false
+// }
+
+function funcGen<T>(props: T) { // 何かの方を受け取る
+  return { item: props }
+}
+const gen6 = funcGen<string>("test") // Tはstringを受け取った
+const gen7 = funcGen<string | null>(null) // これでもOK
+
+
+function funcGen1<T extends string | null>(props: T) { // stringかnullを引数として受け取るよ
+  return { value: props }
+}
+
+const gen8 = funcGen1("hello")
+//const gen9 = funcGen1(23) // numberは無理
+
+interface Props { // interfaceでオブジェクトを定義
+  price: number;
+}
+
+function funcGen3<T extends Props>(props: T) {
+  return { value: props.price } // Propsをextendsしているんだから、当然引数には{price:xxx}がある。
+}
+const gen10 = funcGen3({ price: 20 })
+
+const hogge = (props: Props): number => { // propsは当然オブジェクトでprice:numberを含んだものとなる 
+  return props.price
+}
+hogge({ price: 320 })
+
+const genFunc = function <T, U>(x: T, y: U): U { // 引数と戻り値はなんの方にでもなれまっせ
+  return y
+}
+genFunc({}, 2)
+
+const genFunc2 = <T, _>(x: T): T => {
+  return x;
+}
 
 const Home: NextPage = () => {
 
