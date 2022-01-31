@@ -83,7 +83,7 @@ const suserA: users = {
 }
 
 // Uinon types
-let value : boolean| number
+let value: boolean | number
 
 value = true
 value = 3
@@ -99,7 +99,7 @@ let company: "Facebook" | "google" | "amazon"
 company = "amazon"
 // company = "yahoo" リテラルタイプ宣言のもの以外は入れれない
 
-let memory : 256 | 512
+let memory: 256 | 512
 // memory = 2226 こちらも指定外は無理
 
 
@@ -111,7 +111,7 @@ msg2 = "helllo"
 
 //typeof 変数の継承
 let animal = { cat: "smlal cat" }
-let newAnimal: typeof animal = {cat:"bigCat"}
+let newAnimal: typeof animal = { cat: "bigCat" }
 
 let msg3 = "hi"
 let msg4: typeof msg3;  // すでにある変数の方を継承する
@@ -127,7 +127,7 @@ let animal3: typeof animal2 // オブジェクトの中にstringという型
 
 type KEYS = {
   primary: string;
-  seccondary:string;
+  seccondary: string;
 }
 let key: keyof KEYS
 key = "primary" // keyofは、宣言されたものをユニオン型で受けとる
@@ -137,17 +137,48 @@ key = "seccondary" // どちらかしかダメ
 
 const SPORTS = {
   scoccedr: "Soccer",
-  baseball:"Baseball"
+  baseball: "Baseball"
 }
 let keySprtrs: typeof SPORTS;
-  keySprtrs = {
+keySprtrs = {
   scoccedr: "string",
   baseball: "string",
-  }
+}
 
 // 変数を型ととして継承し、ユニオン型で指定できるようにする。
 let keySports2: keyof typeof SPORTS;
 keySports2 = "scoccedr"
+
+// enum型列挙型　自動で連番をつけます
+// 下記のように、OSに対して番号がふられている場合。
+// windows = 0
+// Mac = 1
+// Linex = 2
+// 仕様書やwikiをみて、0はwindowsなんだなと理解する必要がある。
+// それをTypescriptで可視化する。
+// オブジェクトを作って変数に格納し、定数を定義てもいいけど、Typescriptはenum型を使えばOK
+// TSで保管して候補をあげてくれるので、スペルミスなど減らせる
+
+enum OS {
+  Windows,
+  Mac,
+  Linux
+}
+
+interface PC {
+  id: number,
+  OSType: OS;
+}
+
+const PC1: PC = {
+  id: 1,
+  OSType: OS.Windows
+}
+
+const PC2: PC = {
+  id: 2,
+  OSType: OS.Mac
+}
 
 
 
