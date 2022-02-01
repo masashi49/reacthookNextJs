@@ -271,12 +271,50 @@ const genFunc2 = <T, _>(x: T): T => {
 }
 
 interface padsf{
-  prid :number
+  price :number
 }
 function SampleFunc<T extends padsf>(props: T) {
-  return `${props.prid}`
+  return `${props.price}`
 }
-SampleFunc({prid:23})
+SampleFunc({price:23})
+
+
+const funcGen4 = <T extends padsf>(props: T) => { 
+  return {value:props.price}
+}
+
+
+import Data from "../components/data.json"
+
+type USERS = typeof Data // typeofでjsonのデータ構造をまるっと型にできる!すごい
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const Home: NextPage = () => {
 
