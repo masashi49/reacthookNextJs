@@ -270,6 +270,14 @@ const genFunc2 = <T, _>(x: T): T => {
   return x;
 }
 
+interface padsf{
+  prid :number
+}
+function SampleFunc<T extends padsf>(props: T) {
+  return `${props.prid}`
+}
+SampleFunc({prid:23})
+
 const Home: NextPage = () => {
 
   const [age, setAge] = useState(0)
