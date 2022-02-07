@@ -41,7 +41,7 @@ const TestPage: NextPage = () => {
       {count} <br />
       {user.id}
       {user.name}
-      {user.login && "ログインです"}
+      {user.login && "ログインでkkkkkす"}
       <br />
       <button onClick={nueId}>ボタンです</button>
       <input type="text" value={inputData} onChange={handleInputChange} />
