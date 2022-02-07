@@ -1,4 +1,4 @@
-import Reactm, { useState } from "react"
+import Reactm, { ChangeEventHandler, useState } from "react"
 import type { NextPage } from 'next'
 
 interface Props {
@@ -26,9 +26,15 @@ const TestPage: NextPage = () => {
     name: "太郎",
     login: false
   })
-  const nueId = () => {
-    setUser({ ...user, login: true })
+  const [inputData, setInputData] = useState("")
+  const nueId = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("テスト")
   }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputData(e.target.value)
+  }
+
   return (
     <div>
       <h1><TestComponent text="hello" /></h1>
@@ -37,7 +43,9 @@ const TestPage: NextPage = () => {
       {user.name}
       {user.login && "ログインです"}
       <br />
-      <button onClick={nueId}></button>
+      <button onClick={nueId}>ボタンです</button>
+      <input type="text" value={inputData} onChange={handleInputChange} />
+      <h2>{inputData}</h2>
     </div>
   )
 }
