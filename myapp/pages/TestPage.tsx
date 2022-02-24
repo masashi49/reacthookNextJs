@@ -1,5 +1,6 @@
 import Reactm, { ChangeEventHandler, useState } from "react"
 import type { NextPage } from 'next'
+import TestCompo from "../components/TestCompo"
 
 interface Props {
   text: string
@@ -46,6 +47,7 @@ const TestPage: NextPage = () => {
       <button onClick={nueId}>ボタンです</button>
       <input type="text" value={inputData} onChange={handleInputChange} />
       <h2>{inputData}</h2>
+      <TestCompo text="hello from App"/>
     </div>
   )
 }
