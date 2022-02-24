@@ -1,3 +1,4 @@
+import { prependOnceListener } from "process"
 import React, { useState } from "react"
 
 interface Props {
@@ -9,15 +10,34 @@ interface userData {
     name: string;
 }
 
+interface inputedesuDeata {
+    text: string;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+const Inputdesu: React.FC<inputedesuDeata> = (props) => {
+    return (
+        <div>
+            konnnitiwa<br />
+            <input type="text" value={props.text} onChange={(e) => { props.onChange(e)}}/>
+        </div>
+    )
+}
+
 const TestCompo: React.VFC<Props> = (props) => {
     const [count, setCount] = useState<number | null>(0)
     const [user, setuser] = useState<userData>({ id: 100, name: "" })
     const [aaarr, setAttr] = useState<number[]>([1, 2, 3, 454, 54, 5, 34,])
     const [inputeData, setInputData] = useState("")
-    
+
     const handleInputchange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputData(e.target.value)
     }
+
+    const handlers = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputData(e.target.value)
+    }
+
 
 
     return (
@@ -37,10 +57,15 @@ const TestCompo: React.VFC<Props> = (props) => {
             <p>interfaceで受け取るものを定義するだけ。</p>
             <p>React.VFCとReact.FC</p>
             <p>ここを読む:  https://qiita.com/tttocklll/items/c78aa33856ded870e843</p>
-            <input type="text" value={inputeData} onChange={handleInputchange}/>
+            <input type="text" value={inputeData} onChange={handleInputchange} />
             <p>{inputeData}です！</p>
+            <Inputdesu onChange={handlers} text={inputeData} />
         </>
     )
 }
+
+
+
+
 
 export default TestCompo
