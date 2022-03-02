@@ -2,7 +2,8 @@ import { prependOnceListener } from "process"
 import React, { useState } from "react"
 
 interface Props {
-    text: string
+    text: string;
+    id: number;
 }
 
 interface userData {

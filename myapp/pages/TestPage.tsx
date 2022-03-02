@@ -47,7 +47,7 @@ const TestPage: NextPage = () => {
       <button onClick={nueId}>ボタンです</button>
       <input type="text" value={inputData} onChange={handleInputChange} />
       <h2>{inputData}</h2>
-      <TestCompo text="hello from App"/>
+      <TestCompo id={20} text="hello from App"/>
     </div>
   )
 }
