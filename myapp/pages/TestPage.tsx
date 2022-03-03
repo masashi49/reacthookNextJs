@@ -20,6 +20,20 @@ const TestComponent: React.FC<Props> = (props) => {
   )
 }
 
+const Riretion: React.FC = () => {
+  return (
+    <div>
+      <p>Hasuraを学ぶ上でリレーションの理解が必要</p>
+      <a href="https://coosy.co.jp/blog/web-database-base/"></a>
+      リレーションとは関係性を表す。
+      1:1 1:n n:nがある。
+      ユーザー一人に対してのプロフィール情報は1:1
+      ユーザー1人に対して受講できる授業は1:n
+      ブログ記事テーブルに対してのタグテーブルはn:n、この場合、中間に位置するテーブルを挟んで整理するとよい。作りながらなれるのが良さそう。
+    </div>
+  )
+}
+
 const TestPage: NextPage = () => {
   const [count, setCount] = useState<number | null>(0);
   const [user, setUser] = useState<UserData>({
@@ -47,7 +61,8 @@ const TestPage: NextPage = () => {
       <button onClick={nueId}>ボタンです</button>
       <input type="text" value={inputData} onChange={handleInputChange} />
       <h2>{inputData}</h2>
-      <TestCompo id={20} text="hello from App"/>
+      <TestCompo id={20} text="hello from App" />
+      <Riretion />
     </div>
   )
 }
